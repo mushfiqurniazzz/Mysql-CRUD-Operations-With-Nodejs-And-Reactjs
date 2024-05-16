@@ -1,0 +1,40 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Build files
+/build
+/dist
+/.next
+/.nuxt
+/.idea
+
+# Dependency directories
+/.pnp
+.pnp.js
+
+# Testing libraries
+/coverage
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# User-specific files
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+.komodotools
+.kate-swp
+
+# Yarn
+yarn-error.log
+.pnp/
+.pnp.js
