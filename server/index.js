@@ -1,3 +1,4 @@
+//importing express, environmental variables, bodyparser, router, database connection function and declaring them in a varibale to be using it in our index.js file
 const express = require('express');
 const dotenv = require('dotenv');
 const ConnectDB = require('./db/ConnectDB');
@@ -5,6 +6,7 @@ const app = express();
 const router = require('./routes/DBOperRoutes');
 const bodyParser = require('body-parser');
 dotenv.config();
+//using the port in environmental variable or 5000
 const port = process.env.PORT || 5000;
 
 // middleware to parse incoming request in bodies
@@ -12,22 +14,22 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Initialize the database connection pool
+// initialize the database connection pool
 let pool;
 
 (async () => {
     pool = await ConnectDB();
 
-    // Pass the pool to the routes
+    // pass the pool to the routes
     app.use((req, res, next) => {
         req.pool = pool;
         next();
     });
 
-    // Use the router
+    // use the router
     app.use("/", router);
 
-    // Start the server
+    // start the server
     app.listen(port, () => {
         console.log(`Example app listening on port http://localhost:${port}`);
     });
