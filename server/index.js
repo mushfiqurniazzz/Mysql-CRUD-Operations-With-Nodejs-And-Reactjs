@@ -5,6 +5,7 @@ const ConnectDB = require('./db/ConnectDB');
 const app = express();
 const router = require('./routes/DBOperRoutes');
 const bodyParser = require('body-parser');
+const cors = require("cors")
 dotenv.config();
 //using the port in environmental variable or 5000
 const port = process.env.PORT || 5000;
@@ -13,7 +14,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors())
 // initialize the database connection pool
 let pool;
 
