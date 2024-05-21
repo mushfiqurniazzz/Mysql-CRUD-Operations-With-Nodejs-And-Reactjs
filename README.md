@@ -1,5 +1,5 @@
 <h1>MySQL CRUD - Nodejs, Reactjs</h1>
-[Screencast from 2024-05-21 15-59-32.webm](https://github.com/mushfiqurniazzz/Mysql-CRUD-Operations-With-Nodejs-And-Reactjs/assets/148959859/5a0ca891-8cf8-4e37-ad1e-6d6cf805437e)
+![READMEvideo](https://github.com/mushfiqurniazzz/Mysql-CRUD-Operations-With-Nodejs-And-Reactjs/assets/148959859/bba9f363-a8fc-4d91-a5ed-f0d43966c490)
 <p>This app allows users to save users with name and email with specific id for everyone, featuring functionalities like create, read, update, delete. It uses MySQL as the database to store users, Express.js for handling server-side logic, React.js for building the user interface, and Node.js for server-side runtime environment. The app provides a seamless experience for users to save users and time.</p>
 <h3>Running the Project Locally</h3>
   <p>To run this project on your local machine, follow these steps:
