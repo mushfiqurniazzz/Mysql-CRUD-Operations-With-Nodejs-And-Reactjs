@@ -1,43 +1,54 @@
+//importing neccessary libraries for this modal which will add users to the database and we will be using this as a functional component for table
 import { useState } from "react";
 import { toast } from "sonner";
 import axios from "axios";
 
+//starting of the functional component which takes a argument inside for adding the user to the user aray for dynamic display witout any reload
 function CreateUserModal({ addUser }) {
+  //using state variables for access of the input fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
+  //function for dynamic change of values for the input fields of name field
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
+  //function for dynamic change of values for the input fields of email field
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
+  //creation of an async await function which first checks if all the inputs are filled, sends a post request to the server using axios then shows a toast message if is successful or not
   const handleCreateUser = async () => {
+    //input check
     if (!name || !email || name === "" || email === "") {
       toast.error("All Fields Are Required");
       return;
     }
 
     try {
+      //post req to server
       const res = await axios.post("http://localhost:3000/", {
         name,
         email
       });
 
+      //incase of success
       if (res.status === 201) {
         toast.success("User Created");
-        addUser(res.data); // Add the new user to the list
-        setName("");
-        setEmail("");
+        addUser(res.data); // add the new user to the list
+        setName(""); //empty the fields after successful operation
+        setEmail(""); //empty the fields after successful operation
       }
     } catch (error) {
+      //incase of error
       console.error("Error Creating User: ", error);
       toast.error("Error Creating User");
     }
   };
 
+  //using bootstrap pre built components
   return (
     <>
       <button
@@ -115,4 +126,5 @@ function CreateUserModal({ addUser }) {
   );
 }
 
+//exporting the created function
 export default CreateUserModal;

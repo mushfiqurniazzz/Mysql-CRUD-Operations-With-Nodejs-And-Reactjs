@@ -1,49 +1,65 @@
+//importing neccessary libraries for this modal which will edit users in the database and we will be using this as a functional component for table
 import { useState } from "react";
 import { toast } from "sonner";
 import axios from "axios";
 
+//starting of the functional component which edits the user in the database
 function EditUserModal() {
+  //using state variables for access of the input fields
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
+  //function for dynamic change of values for the input fields of id field
   const handleIdChange = (event) => {
     setId(event.target.value);
   };
 
+  //function for dynamic change of values for the input fields of name field
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
+  //function for dynamic change of values for the input fields of email field
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
+  //creation of an async await function which first checks if all the inputs are filled, sends a post request to the server using axios then shows a toast message if is successful or not
   const handleEditUser = async () => {
+    //input check
     if (!id || !name || !email || id === "" || name === "" || email === "") {
       toast.error("All Fields Are Required");
       return;
     }
     try {
+      //put req to server
       const res = await axios.put(`http://localhost:3000`, {
         id,
         name,
         email
       });
 
+      //incase of success
       if (res.status === 200) {
         toast.success("User Edited || Reloading to Update");
-        setId("");
-        setName("");
-        setEmail("");
-        setTimeout(() => {location.reload()}, 3000);
+        setId(""); //empty the fields after successful operation
+        setName(""); //empty the fields after successful operation
+        setEmail(""); //empty the fields after successful operation
+
+        //after 3 sec reload the page for users to view edit
+        setTimeout(() => {
+          location.reload();
+        }, 3000);
+
       }
     } catch (error) {
+      //incase of error
       console.error("Error Editing User", error);
       toast.error("Error Editing User");
     }
   };
-
+//using bootstrap pre built components
   return (
     <>
       <button
@@ -134,4 +150,5 @@ function EditUserModal() {
   );
 }
 
+//exporting the created function
 export default EditUserModal;
